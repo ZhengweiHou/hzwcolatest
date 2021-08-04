@@ -28,6 +28,7 @@
         <module>start</module>
         <module>hzwcolatest-plugin</module>
         <module>hzwcolatest-dbsdk</module>
+        <module>utiltoolsdemo</module>
     </modules>
 
     <dependencyManagement>
