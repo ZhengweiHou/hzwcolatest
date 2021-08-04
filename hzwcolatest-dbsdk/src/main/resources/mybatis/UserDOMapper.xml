@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.houzw.demo.database.UserDOMapper">
+  <resultMap id="BaseResultMap" type="com.houzw.demo.database.dataobject.UserDO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="display_name" jdbcType="VARCHAR" property="displayName" />
+    <result column="fcd" jdbcType="TIMESTAMP" property="fcd" />
+    <result column="fcu" jdbcType="VARCHAR" property="fcu" />
+    <result column="lcd" jdbcType="TIMESTAMP" property="lcd" />
+    <result column="lcu" jdbcType="VARCHAR" property="lcu" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, display_name, fcd, fcu, lcd, lcu
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hzw_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hzw_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.houzw.demo.database.dataobject.UserDO">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into hzw_user (name, display_name, fcd, 
+      fcu, lcd, lcu)
+    values (#{name,jdbcType=VARCHAR}, #{displayName,jdbcType=VARCHAR}, #{fcd,jdbcType=TIMESTAMP}, 
+      #{fcu,jdbcType=VARCHAR}, #{lcd,jdbcType=TIMESTAMP}, #{lcu,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.houzw.demo.database.dataobject.UserDO">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into hzw_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="displayName != null">
+        display_name,
+      </if>
+      <if test="fcd != null">
+        fcd,
+      </if>
+      <if test="fcu != null">
+        fcu,
+      </if>
+      <if test="lcd != null">
+        lcd,
+      </if>
+      <if test="lcu != null">
+        lcu,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="displayName != null">
+        #{displayName,jdbcType=VARCHAR},
+      </if>
+      <if test="fcd != null">
+        #{fcd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fcu != null">
+        #{fcu,jdbcType=VARCHAR},
+      </if>
+      <if test="lcd != null">
+        #{lcd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lcu != null">
+        #{lcu,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.houzw.demo.database.dataobject.UserDO">
+    update hzw_user
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="displayName != null">
+        display_name = #{displayName,jdbcType=VARCHAR},
+      </if>
+      <if test="fcd != null">
+        fcd = #{fcd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fcu != null">
+        fcu = #{fcu,jdbcType=VARCHAR},
+      </if>
+      <if test="lcd != null">
+        lcd = #{lcd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lcu != null">
+        lcu = #{lcu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.houzw.demo.database.dataobject.UserDO">
+    update hzw_user
+    set name = #{name,jdbcType=VARCHAR},
+      display_name = #{displayName,jdbcType=VARCHAR},
+      fcd = #{fcd,jdbcType=TIMESTAMP},
+      fcu = #{fcu,jdbcType=VARCHAR},
+      lcd = #{lcd,jdbcType=TIMESTAMP},
+      lcu = #{lcu,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

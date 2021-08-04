@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.houzw.demo</groupId>
+        <artifactId>hzwcolatest-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>hzwcolatest-infrastructure</artifactId>
+    <packaging>jar</packaging>
+    <name>hzwcolatest-infrastructure</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.houzw.demo</groupId>
+            <artifactId>hzwcolatest-dbsdk</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.houzw.demo</groupId>
+            <artifactId>hzwcolatest-domain</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.houzw.demo</groupId>
+            <artifactId>hzwcolatest-dbsdk</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- ====== build plugins =======-->
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+           <!-- &lt;!&ndash; mybatis 代码生成插件 &ndash;&gt;
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <executions>
+                    <execution>
+                        <id>Generate MyBatis Artifacts</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                &lt;!&ndash; mybatisGenerator 的配置 &ndash;&gt;
+                <configuration>
+                    &lt;!&ndash; generator 工具配置文件的位置 &ndash;&gt;
+                    <configurationFile>src/main/resources/mybatis_gen_config.xml</configurationFile>
+                    <verbose>true</verbose>
+                    &lt;!&ndash; 是否覆盖 &ndash;&gt;
+                    &lt;!&ndash; 此处要特别注意,如果不加这个设置会导致每次运行都会在原目录再次创建&ndash;&gt;
+                    <overwrite>true</overwrite>
+                </configuration>
+                <dependencies>
+                    &lt;!&ndash; 添加一个mysql的依赖,防止等会找不到driverClass &ndash;&gt;
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>8.0.25</version>
+                    </dependency>
+                    &lt;!&ndash; mybatis-generator-maven-plugin已包含该依赖
+                     <dependency>
+                            <groupId>org.mybatis.generator</groupId>
+                            <artifactId>mybatis-generator-core</artifactId>
+                            <version>1.4.0</version>
+                        </dependency>&ndash;&gt;
+
+                    &lt;!&ndash; 将BaseDO加载到，mybatis-generator插件执行时的classpath下，解决生成DO实体时，子类依旧重写基类的属性 &ndash;&gt;
+                    &lt;!&ndash; 具体的jar路径视自己的实际情况而定，只要目标BaseDO在下面的这个jar中就行 &ndash;&gt;
+                    <dependency>
+                        <groupId>${project.groupId}</groupId>
+                        <artifactId>${project.artifactId}</artifactId>
+                        <version>${project.version}</version>
+                        <scope>system</scope>
+                        <systemPath>${project.basedir}/target/${project.artifactId}-${project.version}.jar</systemPath>
+                        &lt;!&ndash; <systemPath>${project.basedir}/target/hzw-springboot-demo-infrastructure-1.0.0-SNAPSHOT.jar</systemPath>&ndash;&gt;
+                    </dependency>
+                    <dependency>
+                        <groupId>com.houzw.demo</groupId>
+                        <artifactId>hzwcolatest-plugin</artifactId>
+                        <version>1.0.0-SNAPSHOT</version>
+                        &lt;!&ndash;                        <version>1.0.0-SNAPSHOT</version>&ndash;&gt;
+                    </dependency>
+                </dependencies>
+            </plugin>-->
+
+        </plugins>
+    </build>
+
+</project>
