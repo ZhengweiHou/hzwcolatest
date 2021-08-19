@@ -28,6 +28,20 @@
         <plugins>
 
             <plugin>
+                <groupId>com.houzw.demo</groupId>
+                <artifactId>hzwcolatest-plugin</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>hzwtest</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
@@ -40,7 +54,8 @@
                 <executions>
                     <execution>
                         <id>Generate MyBatis Artifacts</id>
-                        <phase>deploy</phase>
+                        <!-- 设置none阶段，只能手动执行该插件 -->
+                        <phase>none</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>

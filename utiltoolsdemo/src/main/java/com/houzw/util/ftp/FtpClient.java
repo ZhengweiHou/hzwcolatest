@@ -1,4 +1,4 @@
-package com.houzw.ftp;
+package com.houzw.util.ftp;
 
 import org.apache.commons.net.PrintCommandListener;
 import org.apache.commons.net.ftp.FTPClient;

@@ -5,6 +5,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<mappers>
-        <mapper resource="mybatis/UserDOMapper.xml"/>
+<!--        <mapper resource="mybatis/UserDOMapper.xml"/>-->
+        <mapper resource="mybatis/*Mapper.xml"/>
     </mappers>
 </configuration>

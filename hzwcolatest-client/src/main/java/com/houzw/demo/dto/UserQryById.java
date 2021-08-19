@@ -3,7 +3,6 @@ package com.houzw.demo.dto;
 import lombok.Data;
 
 @Data
-public class UserQry {
-	public int id;
-
+public class UserQryById {
+	public Integer id;
 }

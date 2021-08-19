@@ -1,4 +1,4 @@
-package com.houzw.ftp;
+package com.houzw.util.ftp;
 
 import org.junit.After;
 import org.junit.Before;
@@ -13,7 +13,6 @@ import org.mockftpserver.fake.filesystem.UnixFakeFileSystem;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Arrays;
 import java.util.Collection;
 
 public class FtpClientIntegrationTest {
@@ -85,8 +84,5 @@ public class FtpClientIntegrationTest {
         assert(fakeFtpServer.getFileSystem().exists("/buz.txt"));
 //        assertThat(fakeFtpServer.getFileSystem().exists("/buz.txt")).isTrue();
     }
-
-
-
 
 }

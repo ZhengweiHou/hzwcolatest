@@ -28,7 +28,7 @@
 
         <!-- 链接数据库的配置 MySQL8之前的驱动com.mysql.jdbc.Driver，新的驱动com.mysql.cj.jdbc.Driver，并且要加时区-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf-8&amp;tinyInt1isBit=false&amp;allowMultiQueries=true"
+                        connectionURL="jdbc:mysql://192.168.32.201:3306/hzwcolatest?useUnicode=true&amp;characterEncoding=utf-8&amp;tinyInt1isBit=false&amp;allowMultiQueries=true"
                         userId="root" password="root"/>
 
         <!--  生成实体类
@@ -66,7 +66,7 @@
                enableCountByExample  = "false"
                enableUpdateByExample = "false"
                enableDeleteByExample = "false"
-               enableSelectByExample = "false"
+               enableSelectByExample = "true"
                selectByExampleQueryId= "false"
         >
             <!-- 表中字段是xx_xx这种的  默认驼峰命名 即xxXX  如果想使用原字段 要新增属性 -->

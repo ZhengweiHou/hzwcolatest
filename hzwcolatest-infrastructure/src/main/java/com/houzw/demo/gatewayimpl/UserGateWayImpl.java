@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UserGateWayImpl implements UserGateway{
 
 	@Resource
-	private UserDOMapper UserDOMapper;
+	private com.houzw.demo.database.UserDOMapper UserDOMapper;
 	
 	@Resource
 	private DomainEventPublisher domainEventPublisher;

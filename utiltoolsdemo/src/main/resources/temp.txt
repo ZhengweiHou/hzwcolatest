@@ -1,0 +1,25 @@
+|phase|desc|
+|---|---|
+|validate
+|initialize
+|generate-sources
+|process-sources
+|generate-resources
+|process-resources    ：复制和处理资源文件到target目录，准备打包；
+|compile              编译项目的源代码；
+|process-classes
+|generate-test-sources
+|process-test-sources
+|generate-test-resources
+|process-test-resources
+|test-compile    ：编译测试源代码；
+|process-test-classes
+|test    ：运行测试代码；
+|prepare-package
+|package    ：打包成jar或者war或者其他格式的分发包；
+|pre-integration-test
+|integration-test
+|post-integration-test
+|verify
+|install    ：将打好的包安装到本地仓库，供其他项目使用；
+|deploy    ：将打好的包安装到远程仓库，供其他项目使用；
