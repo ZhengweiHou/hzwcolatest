@@ -27,7 +27,7 @@ mybatis-plus:
 
 logging:
   level:
-    org.springframework: DEBUG
+    org.springframework: INFO
 
 #mybatis:
 #  mapper-locations:

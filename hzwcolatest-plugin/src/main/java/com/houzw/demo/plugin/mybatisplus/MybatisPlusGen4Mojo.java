@@ -127,7 +127,7 @@ public class MybatisPlusGen4Mojo extends AbstractMojo {
         strategyConfig.setNaming(strategy.getNaming());
 //        strategyConfig.setEntityLombokModel(true);
         Optional.ofNullable(strategy.getSuperEntityClass()).ifPresent(sec -> strategyConfig.setSuperEntityClass(sec));
-
+        Optional.ofNullable(strategy.getVersionFieldName()).ifPresent(vfn -> strategyConfig.setVersionFieldName(vfn));
 
 //        InjectionConfig injectionConfig = new InjectionConfig() {
 //            @Override

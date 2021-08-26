@@ -74,25 +74,6 @@
     <build>
         <plugins>
 
-            <!-- 自定义插件测试 -->
-            <plugin>
-                <groupId>com.houzw.demo</groupId>
-                <artifactId>hzwcolatest-plugin</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
-                <executions>
-                    <execution>
-                        <phase>none</phase>
-                        <goals>
-                            <goal>hzwtest</goal>
-                            <!--                            <goal>hzwgen</goal>-->
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <hello>${basedir}</hello>
-                </configuration>
-            </plugin>
-
             <!-- 自定义 mybatis-plus 代码生成 插件测试 -->
             <plugin>
                 <groupId>com.houzw.demo</groupId>
@@ -124,6 +105,8 @@
                             <property>hzw_user</property>
                         </include>
                         <naming>underline_to_camel</naming>
+                        <!--<superEntityClass>com.houzw.demo.database.dataobject.BaseDO</superEntityClass>-->
+                        <versionFieldName>version</versionFieldName>
                     </strategy>
                     <packageInfo>
                         <parent>com.houzw.demo.database.mybatisplus</parent>

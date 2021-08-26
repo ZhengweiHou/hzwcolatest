@@ -1,6 +1,7 @@
 package com.houzw.demo.database.mybatisplus.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.Version;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -10,18 +11,18 @@ import java.io.Serializable;
  * <p>
  * 
  * </p>
- * wwwwwwwww
+ *
  * @author sirius's plugin by mybatis_plus generator
  * @since 2021-08-26
  */
 public class HzwUser implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID=1L;
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @TableField("`name`")
+    @TableField("name")
     private String name;
 
     private String displayName;
@@ -33,6 +34,9 @@ public class HzwUser implements Serializable {
     private LocalDateTime lcd;
 
     private String lcu;
+
+    @Version
+    private Long version;
 
 
     public Integer getId() {
@@ -91,6 +95,14 @@ public class HzwUser implements Serializable {
         this.lcu = lcu;
     }
 
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
     @Override
     public String toString() {
         return "HzwUser{" +
@@ -101,6 +113,7 @@ public class HzwUser implements Serializable {
         ", fcu=" + fcu +
         ", lcd=" + lcd +
         ", lcu=" + lcu +
+        ", version=" + version +
         "}";
     }
 }

@@ -27,5 +27,8 @@ public class PluginStrategyConfig {
     @Parameter
     private String superEntityClass;
 
+    @Parameter
+    private String versionFieldName;
+
 
 }

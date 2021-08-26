@@ -2,8 +2,10 @@ package com.houzw.demo.database.mp;
 
 import com.houzw.demo.database.mybatisplus.entity.HzwUser;
 import com.houzw.demo.database.mybatisplus.service.IHzwUserService;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -37,10 +39,43 @@ public class ServiceTest {
         hzwUserService.save(hzwuser);
         System.out.println("============" + hzwuser.getId());
 
-        hzwUserService.list();
-
-        System.out.println("============" + hzwuser.getId());
-
     }
+
+    @Test
+    public void optimisticLockerupdateTest() {
+        HzwUser hzwuser = hzwUserService.getById(1);
+
+        Long oldversion = hzwuser.getVersion();
+
+        hzwuser.setDisplayName(hzwuser.getDisplayName() + "h");
+        hzwUserService.updateById(hzwuser);
+
+        assert(hzwuser.getVersion() == oldversion + 1);
+
+        System.out.println("oldversion:" + oldversion + "  newversion:" + hzwuser.getVersion());
+    }
+
+    @Test
+    public void optimisticLockerExceptionTest() throws InterruptedException {
+
+        HzwUser hzwuser = hzwUserService.getById(1);
+        HzwUser hzwuser2 = new HzwUser();
+        BeanUtils.copyProperties(hzwuser,hzwuser2);
+        new Thread(()->{
+            hzwuser.setDisplayName(hzwuser.getDisplayName() + "z");
+            hzwUserService.updateById(hzwuser);
+        }).start();
+
+        Thread.sleep(100);
+
+        Assert.assertFalse(hzwUserService.updateById(hzwuser2));
+    }
+
+//    @Transactional
+//    public void fun1(HzwUser hzwuser){
+//        hzwuser.setDisplayName(hzwuser.getDisplayName() + "z");
+//        boolean b = hzwUserService.updateById(hzwuser);
+//        System.out.println(hzwuser.getDisplayName() + "  " + hzwuser.getVersion() + " " + b);
+//    }
 
 }
