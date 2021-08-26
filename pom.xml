@@ -17,6 +17,8 @@
         <mybatis-starter.version>1.3.1</mybatis-starter.version>
         <spring-boot.version>2.1.3.RELEASE</spring-boot.version>
         <cola.components.version>4.0.1</cola.components.version>
+        <mybatis-plus.version>3.4.3</mybatis-plus.version>
+<!--        <mybatis-plus-starter.version>3.4.3</mybatis-plus-starter.version>-->
     </properties>
 
     <modules>
@@ -30,6 +32,15 @@
         <module>hzwcolatest-dbsdk</module>
         <module>utiltoolsdemo</module>
     </modules>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <dependencyManagement>
         <dependencies>
@@ -96,6 +107,19 @@
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis-starter.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring-boot.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+  <!--          <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus-starter.version}</version>
+            </dependency>-->
             <!--Spring Boot End-->
             <!--Validation API-->
             <dependency>
@@ -154,6 +178,12 @@
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-core</artifactId>
                 <version>1.4.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
             </dependency>
             <!-- houzw End -->
 

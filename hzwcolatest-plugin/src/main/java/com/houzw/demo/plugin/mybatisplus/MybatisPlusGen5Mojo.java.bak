@@ -1,0 +1,149 @@
+//package com.houzw.demo.plugin.mybatisplus;
+//
+//import com.baomidou.mybatisplus.generator.AutoGenerator;
+//import com.baomidou.mybatisplus.generator.config.*;
+//import com.baomidou.mybatisplus.generator.config.builder.ConfigBuilder;
+//import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
+//import com.baomidou.mybatisplus.generator.config.querys.MySqlQuery;
+//import com.baomidou.mybatisplus.generator.config.rules.DateType;
+//import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+//import com.baomidou.mybatisplus.generator.keywords.MySqlKeyWordsHandler;
+//import org.apache.maven.plugin.AbstractMojo;
+//import org.apache.maven.plugin.MojoExecutionException;
+//import org.apache.maven.plugin.MojoFailureException;
+//import org.apache.maven.plugins.annotations.LifecyclePhase;
+//import org.apache.maven.plugins.annotations.Mojo;
+//
+//import java.io.File;
+//import java.net.URL;
+//
+//@Mojo(name="mybatisplusgen5",defaultPhase= LifecyclePhase.NONE)
+//public class MybatisPlusGenMojo extends AbstractMojo {
+//
+//    public static void main(String[] args) {
+//        ClassLoader classLoader = Thread.currentThread()
+//                .getContextClassLoader();
+//
+//        if (classLoader == null)
+//        {
+//            System.out.println("=====");
+//            classLoader = MybatisPlusGenMojo.class.getClassLoader();
+//        }
+//        URL aa = classLoader.getResource("");
+//        String path = aa.getPath();
+//        System.out.println(path);
+//    }
+//
+//
+//    @Override
+//    public void execute() throws MojoExecutionException, MojoFailureException {
+//
+//        // 分析VelocityTemplateEngine获取resource时的
+////        ClassLoader classLoader = Thread.currentThread()
+////                .getContextClassLoader();
+////
+////        if (classLoader == null)
+////        {
+////            System.out.println("=====");
+////            classLoader = MybatisPlusGenMojo.class.getClassLoader();
+////        }
+////        System.out.println(MybatisPlusGenMojo.class.getResource(""));
+////        URL aa = classLoader.getResource("/");
+////        String path1 = aa.getPath();
+////        System.out.println("================classLoader.getResource.getpath=" + path1);
+//
+//
+//
+//        GlobalConfig globalConfig =
+//                new GlobalConfig.Builder()
+//                        .fileOverride()
+//                        .openDir(false)
+////                .outputDir("/home/houzw/document/git-rep/hzwcolatest/hzwcolatest-dbsdk/src/main/java/com/houzw/demo/database/gentest") // 默认/tmp目录
+//                        .outputDir("src/main/java") // 默认/tmp目录 TODO 这里的相对目录是父项目的根目录，而不是子模块的根目录，但是通过maven插件方式执行时却是符合预期的
+////                .enableSwagger()
+//                        .author("hzw")
+//                        .dateType(DateType.TIME_PACK)   // 生成日期字段的方式
+//                        .commentDate("yyyy-MM-dd")
+//                        .build();
+//
+//        File file = new File("templates/entity_hzw.java");
+//        String path2 = file.getAbsolutePath();
+//
+//        DataSourceConfig dataSourceConfig =
+//                new DataSourceConfig
+////                .Builder("jdbc:mysql://192.168.32.201:3306/hzwcolatest?useUnicode=true&amp;characterEncoding=utf-8&amp;tinyInt1isBit=false&amp;allowMultiQueries=true",
+////                "root", "root")
+//                        .Builder("jdbc:mysql://192.168.32.201:3306/hzwcolatest", "root", "root")
+//                        .typeConvert(new MySqlTypeConvert())
+//                        .keyWordsHandler(new MySqlKeyWordsHandler())
+//                        .dbQuery(new MySqlQuery())
+////                        .schema("mybatis-plus")
+//                        .build();
+//
+//
+//
+////        Map<String, String> pathInfo = new HashMap<>();
+//        // 默认的pathInfo = outputDir + packageInfo(parent + entity/mapper)
+////        pathInfo.put(ConstVal.ENTITY_PATH,globalConfig.getOutputDir() + "/src/main/java/");
+//        PackageConfig packageConfig = new PackageConfig.Builder()
+//                .parent("com.houzw.demo.database.mybatisplus")
+////                .moduleName("houzw")
+////                .pathInfo(pathInfo)
+//                .entity("entity")
+//                .mapper("mapper")
+//                .service("service")
+////                .xml("xml")
+//                .build();
+//
+//
+////        Map<String, String> packageInfo = new HashMap<>();
+////        packageInfo.put(ConstVal.ENTITY,"src/main/java/" + "com.houzw.demo.database.gentest.entity");
+////        packageInfo.put(ConstVal.MAPPER,"src/main/java/" + "com.houzw.demo.database.gentest.mapper");
+////        // packageInfo是私有属性，这里通过反射将自定义的packageInfo注入到PackageConfig中，以实现自定义的包路径
+////        Field packageInfoField = PackageConfig.class.getDeclaredField("packageInfo");
+////        packageInfoField.setAccessible(true);
+////        packageInfoField.set(packageConfig,packageInfo);
+//
+//
+//        TemplateConfig templateConfig = new TemplateConfig.Builder()
+////                .disable(TemplateType.CONTROLLER,TemplateType.SERVICE)
+//                .disable(TemplateType.CONTROLLER)
+////                .disable(TemplateType.SERVICE)
+////                .disable(TemplateType.XML)
+////                .disable(TemplateType.MAPPER)
+////                .entity("templates/entity_hzw.java")
+//                .build();
+//
+//        StrategyConfig strategyConfig = new StrategyConfig.Builder()
+//                .addInclude("hzw_user") // 指定表名，可以多个
+////                .addExclude("hzw_linux") // 排除表名
+////                .addFieldPrefix("l")    // 字段前缀，可以指定多个（代码生成时会属性名会将前缀移除）
+////                .addTablePrefix("hzw")  // 增加表前缀，可以指定多个(代码生成时会实体名会将前缀移除，如hzw_user表前缀设置成hzw则创建的实体名将是User)
+//                .entityBuilder()
+//                .naming(NamingStrategy.underline_to_camel)
+//                .enableLombok()
+//                .controllerBuilder()
+//                .enableRestStyle()
+//                .build();
+//
+////        InjectionConfig injectionConfig = new InjectionConfig.Builder().build();
+//        InjectionConfig injectionConfig = new InjectionConfig.Builder()
+//                .beforeOutputFile((t,u) -> {
+//                    System.out.println("hehe");
+//                })
+//                .build();
+//
+//
+//        ConfigBuilder configBuilder = new ConfigBuilder(packageConfig, dataSourceConfig, strategyConfig, templateConfig, globalConfig, injectionConfig);
+//
+//        AutoGenerator autoGenerator = new AutoGenerator(dataSourceConfig);
+//
+//        autoGenerator.config(configBuilder);
+////        autoGenerator.global(globalConfig);
+////        autoGenerator.packageInfo(packageConfig);
+////        autoGenerator.template(templateConfig);
+////        autoGenerator.strategy(strategyConfig);
+//        autoGenerator.execute(); // 默认velocity引擎
+////        autoGenerator.execute(new FreemarkerTemplateEngine());  // 指定FreemarkerTemplateEngine
+//    }
+//}
