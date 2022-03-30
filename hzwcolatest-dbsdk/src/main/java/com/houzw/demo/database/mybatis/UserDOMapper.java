@@ -1,7 +1,7 @@
-package com.houzw.demo.database;
+package com.houzw.demo.database.mybatis;
 
-import com.houzw.demo.database.dataobject.UserDO;
-import com.houzw.demo.database.dataobject.UserDOExample;
+import com.houzw.demo.database.mybatis.dataobject.UserDO;
+import com.houzw.demo.database.mybatis.dataobject.UserDOExample;
 import java.util.List;
 
 public interface UserDOMapper {

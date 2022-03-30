@@ -1,4 +1,4 @@
-package com.houzw.demo.database.mp;
+package com.houzw.demo.config;
 
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.InnerInterceptor;
@@ -9,13 +9,15 @@ import org.springframework.context.annotation.Configuration;
 import java.util.ArrayList;
 
 @Configuration
-public class TestConfigration {
+public class MybatisPlsConfigration {
 
     // 乐观锁插件
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor(){
         MybatisPlusInterceptor mybatisPlusInterceptor = new MybatisPlusInterceptor();
-        mybatisPlusInterceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
+        ArrayList<InnerInterceptor> innerInterceptors = new ArrayList<>();
+        innerInterceptors.add(new OptimisticLockerInnerInterceptor());
+        mybatisPlusInterceptor.setInterceptors(innerInterceptors);
         return mybatisPlusInterceptor;
     }
 }

@@ -1,6 +1,6 @@
 package com.houzw.demo.database.mybatisplus.mapper;
 
-import com.houzw.demo.database.mybatisplus.entity.HzwUser;
+import com.houzw.demo.database.mybatisplus.entity.HzwUserDO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author sirius's plugin by mybatis_plus generator
- * @since 2021-08-26
+ * @since 2021-09-07
  */
-public interface HzwUserMapper extends BaseMapper<HzwUser> {
+public interface HzwUserDOMapper extends BaseMapper<HzwUserDO> {
 
 }

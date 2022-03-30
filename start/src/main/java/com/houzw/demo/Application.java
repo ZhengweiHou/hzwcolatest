@@ -4,14 +4,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * Spring Boot Starter
  *
  * @author houzw
  */
-@SpringBootApplication(scanBasePackages = {"com.houzw.demo","com.houzw.demo.web"})
-@MapperScan("com.houzw.demo.database")
+@SpringBootApplication
+//@MapperScan("com.houzw.demo.database")
+@MapperScan(basePackages = {"com.houzw.demo.database.mybatisplus.mapper"})
+@ComponentScan({"com.houzw.demo.database.mybatisplus","com.houzw.demo"})
+
 @Slf4j
 public class Application {
 

@@ -1,6 +1,6 @@
 package com.houzw.demo.database.mybatisplus.service;
 
-import com.houzw.demo.database.mybatisplus.entity.HzwUser;
+import com.houzw.demo.database.mybatisplus.entity.HzwUserDO;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author sirius's plugin by mybatis_plus generator
- * @since 2021-08-26
+ * @since 2021-09-07
  */
-public interface IHzwUserService extends IService<HzwUser> {
+public interface HzwUserRep extends IService<HzwUserDO> {
 
 }

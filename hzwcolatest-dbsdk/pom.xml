@@ -92,6 +92,11 @@
                     <global>
                         <fileOverride>true</fileOverride>
                         <dateType>TIME_PACK</dateType>
+                        <serviceName>%sRep</serviceName>
+                        <serviceImplName>%sRepImpl</serviceImplName>
+                        <entityName>%sDO</entityName>
+                        <mapperName>%sDOMapper</mapperName>
+                        <xmlName>%sDOMapper</xmlName>
                     </global>
                     <dataSource>
                         <dbType>MYSQL</dbType>
@@ -110,6 +115,11 @@
                     </strategy>
                     <packageInfo>
                         <parent>com.houzw.demo.database.mybatisplus</parent>
+                        <entity>entity</entity>
+                        <mapper>mapper</mapper>
+                        <xml>mapper.xml</xml>
+                        <service>service</service>
+                        <serviceImpl>service.impl</serviceImpl>
                     </packageInfo>
                 </configuration>
 

@@ -9,6 +9,8 @@ import com.alibaba.cola.dto.Response;
 import com.houzw.demo.domain.gateway.UserGateway;
 import com.houzw.demo.dto.UserAddCmd;
 
+import java.io.File;
+
 @Component
 public class UserAddCmdExe {
 	
@@ -18,9 +20,10 @@ public class UserAddCmdExe {
 	public Response execute(UserAddCmd cmd) {
 		User User  = new User();
 		BeanUtils.copyProperties(cmd.getUserCO(), User);
-		
+
 		// FIXME 关联做一些启动东西
 
+		File.separator;
 		Integer id = UserGateway.save(User);
 		Response resp = Response.buildSuccess();
 		resp.setErrMessage("insert success id: " + id);

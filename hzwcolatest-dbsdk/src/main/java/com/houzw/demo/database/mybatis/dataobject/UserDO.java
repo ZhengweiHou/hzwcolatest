@@ -1,4 +1,4 @@
-package com.houzw.demo.database.dataobject;
+package com.houzw.demo.database.mybatis.dataobject;
 
 public class UserDO extends BaseDO {
     private Integer id;
@@ -6,6 +6,8 @@ public class UserDO extends BaseDO {
     private String name;
 
     private String displayName;
+
+    private Long version;
 
     public Integer getId() {
         return id;
@@ -29,5 +31,13 @@ public class UserDO extends BaseDO {
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 }

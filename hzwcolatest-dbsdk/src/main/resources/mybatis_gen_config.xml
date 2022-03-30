@@ -35,7 +35,7 @@
              targetPackage 生成类的包，真实的包受enableSubPackages属性控制
              targetProject 目录所属位置(目录不存在，不会自动创建)
          -->
-        <javaModelGenerator targetPackage="com.houzw.demo.database.dataobject" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.houzw.demo.database.mybatis.dataobject" targetProject="src/main/java">
             <!-- 在targetPackge的基础上根据schema再生成一层package 默认flase -->
             <!--<property name="enableSubPackages" value="true"/>-->
             <!-- 是否在get方法中 对String类型的字段调用trim() -->
@@ -44,7 +44,7 @@
             <property name="constructorBased" value="false"/>
             <!-- 是否创建一个不可变类-->
             <property name="immutable" value="false"/>
-            <property name="rootClass" value="com.houzw.demo.database.dataobject.BaseDO"/>
+            <property name="rootClass" value="com.houzw.demo.database.mybatis.dataobject.BaseDO"/>
         </javaModelGenerator>
 
 
@@ -54,7 +54,7 @@
         </sqlMapGenerator>
 
         <!-- 生成dao层 -->
-        <javaClientGenerator type="mapper" targetPackage="com.houzw.demo.database" targetProject="src/main/java">
+        <javaClientGenerator type="mapper" targetPackage="com.houzw.demo.database.mybatis" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 

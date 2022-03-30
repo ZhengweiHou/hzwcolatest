@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.houzw.demo.database.UserDOMapper">
-  <resultMap id="BaseResultMap" type="com.houzw.demo.database.dataobject.UserDO">
+<mapper namespace="com.houzw.demo.database.mybatis.UserDOMapper">
+  <resultMap id="BaseResultMap" type="com.houzw.demo.database.mybatis.dataobject.UserDO">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="display_name" jdbcType="VARCHAR" property="displayName" />
@@ -9,6 +9,7 @@
     <result column="fcu" jdbcType="VARCHAR" property="fcu" />
     <result column="lcd" jdbcType="TIMESTAMP" property="lcd" />
     <result column="lcu" jdbcType="VARCHAR" property="lcu" />
+    <result column="version" jdbcType="BIGINT" property="version" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -40,9 +41,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, display_name, fcd, fcu, lcd, lcu
+    id, name, display_name, fcd, fcu, lcd, lcu, version
   </sql>
-  <select id="selectByExample" parameterType="com.houzw.demo.database.dataobject.UserDOExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.houzw.demo.database.mybatis.dataobject.UserDOExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -67,16 +68,18 @@
     delete from hzw_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.houzw.demo.database.dataobject.UserDO">
+  <insert id="insert" parameterType="com.houzw.demo.database.mybatis.dataobject.UserDO">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into hzw_user (name, display_name, fcd, 
-      fcu, lcd, lcu)
+      fcu, lcd, lcu, version
+      )
     values (#{name,jdbcType=VARCHAR}, #{displayName,jdbcType=VARCHAR}, #{fcd,jdbcType=TIMESTAMP}, 
-      #{fcu,jdbcType=VARCHAR}, #{lcd,jdbcType=TIMESTAMP}, #{lcu,jdbcType=VARCHAR})
+      #{fcu,jdbcType=VARCHAR}, #{lcd,jdbcType=TIMESTAMP}, #{lcu,jdbcType=VARCHAR}, #{version,jdbcType=BIGINT}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.houzw.demo.database.dataobject.UserDO">
+  <insert id="insertSelective" parameterType="com.houzw.demo.database.mybatis.dataobject.UserDO">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -100,6 +103,9 @@
       <if test="lcu != null">
         lcu,
       </if>
+      <if test="version != null">
+        version,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="name != null">
@@ -120,9 +126,12 @@
       <if test="lcu != null">
         #{lcu,jdbcType=VARCHAR},
       </if>
+      <if test="version != null">
+        #{version,jdbcType=BIGINT},
+      </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.houzw.demo.database.dataobject.UserDO">
+  <update id="updateByPrimaryKeySelective" parameterType="com.houzw.demo.database.mybatis.dataobject.UserDO">
     update hzw_user
     <set>
       <if test="name != null">
@@ -143,17 +152,21 @@
       <if test="lcu != null">
         lcu = #{lcu,jdbcType=VARCHAR},
       </if>
+      <if test="version != null">
+        version = #{version,jdbcType=BIGINT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.houzw.demo.database.dataobject.UserDO">
+  <update id="updateByPrimaryKey" parameterType="com.houzw.demo.database.mybatis.dataobject.UserDO">
     update hzw_user
     set name = #{name,jdbcType=VARCHAR},
       display_name = #{displayName,jdbcType=VARCHAR},
       fcd = #{fcd,jdbcType=TIMESTAMP},
       fcu = #{fcu,jdbcType=VARCHAR},
       lcd = #{lcd,jdbcType=TIMESTAMP},
-      lcu = #{lcu,jdbcType=VARCHAR}
+      lcu = #{lcu,jdbcType=VARCHAR},
+      version = #{version,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

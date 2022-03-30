@@ -1,40 +1,40 @@
 package com.houzw.demo.gatewayimpl;
 
-import javax.annotation.Resource;
-
-import com.houzw.demo.database.UserDOMapper;
-import com.houzw.demo.database.dataobject.UserDO;
+import com.houzw.demo.common.event.DomainEventPublisher;
+import com.houzw.demo.convertor.HzwUserConvertor;
+import com.houzw.demo.database.mybatisplus.entity.HzwUserDO;
+import com.houzw.demo.database.mybatisplus.service.HzwUserRep;
+import com.houzw.demo.domain.gateway.UserGateway;
 import com.houzw.demo.domain.user.User;
+import com.houzw.demo.dto.domainevent.UserCreatedEvent;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.houzw.demo.common.event.DomainEventPublisher;
-import com.houzw.demo.convertor.UserConvertor;
-import com.houzw.demo.domain.gateway.UserGateway;
-import com.houzw.demo.dto.domainevent.UserCreatedEvent;
-
-import lombok.extern.slf4j.Slf4j;
+import javax.annotation.Resource;
 
 @Component
 @Slf4j
 public class UserGateWayImpl implements UserGateway{
 
-	@Resource
-	private com.houzw.demo.database.UserDOMapper UserDOMapper;
+	@Autowired
+	private HzwUserRep hzwUserRep;
+
 	
 	@Resource
 	private DomainEventPublisher domainEventPublisher;
 	
 	@Override
 	public Integer save(User User) {
-		UserDO UserDo = UserConvertor.toDo(User);
-		UserDOMapper.insertSelective(UserDo);
-		log.debug("自动生成ID：" + UserDo.getId());
+		HzwUserDO hzwUserDO = HzwUserConvertor.toDo(User);
+		hzwUserRep.save(hzwUserDO);
+		log.debug("自动生成ID：" + hzwUserDO.getId());
 		UserCreatedEvent UserCreatedEvent = new UserCreatedEvent();
-		UserCreatedEvent.setId(UserDo.getId());
-		UserCreatedEvent.setName(UserDo.getName());
+		UserCreatedEvent.setId(hzwUserDO.getId());
+		UserCreatedEvent.setName(hzwUserDO.getName());
 		
 		domainEventPublisher.publish(UserCreatedEvent);
-		return UserDo.getId();
+		return hzwUserDO.getId();
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.houzw.demo.database.dataobject;
+package com.houzw.demo.database.mybatis.dataobject;
 
 import lombok.Data;
 

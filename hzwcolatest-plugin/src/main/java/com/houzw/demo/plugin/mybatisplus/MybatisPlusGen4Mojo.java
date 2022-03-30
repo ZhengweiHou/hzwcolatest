@@ -1,8 +1,10 @@
 package com.houzw.demo.plugin.mybatisplus;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.builder.ConfigBuilder;
+import com.baomidou.mybatisplus.generator.config.po.TableFill;
 import com.houzw.demo.plugin.mybatisplus.config.PluginDataSourceConfig;
 import com.houzw.demo.plugin.mybatisplus.config.PluginGlobalConfig;
 import com.houzw.demo.plugin.mybatisplus.config.PluginPackageConfig;
@@ -14,6 +16,8 @@ import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Mojo(name="mybatisplusgen4",defaultPhase= LifecyclePhase.NONE)
@@ -46,6 +50,12 @@ public class MybatisPlusGen4Mojo extends AbstractMojo {
 ////        globalConfig.setSwagger2(true);
 //        globalConfig.setAuthor("hzw");
 //        globalConfig.setDateType(DateType.TIME_PACK);
+//        globalConfig.setServiceName("%sRep");
+//        globalConfig.setServiceImplName("%sRepImpl");
+//        globalConfig.setEntityName("%sDO");
+//        globalConfig.setMapperName("%sDOMapper");
+//        globalConfig.setXmlName("%sDOMapper");
+
         GlobalConfig globalConfig = new GlobalConfig();
         if(!Optional.ofNullable(global).isPresent()){
             global = new PluginGlobalConfig();
@@ -57,6 +67,13 @@ public class MybatisPlusGen4Mojo extends AbstractMojo {
         globalConfig.setAuthor(global.getAuthor());
         globalConfig.setDateType(global.getDateType());
         globalConfig.setEnableCache(global.isEnableCache());
+        Optional.ofNullable(global.getEntityName()).ifPresent(v->globalConfig.setEntityName(v));
+        Optional.ofNullable(global.getMapperName()).ifPresent(v->globalConfig.setMapperName(v));
+        Optional.ofNullable(global.getXmlName()).ifPresent(v->globalConfig.setXmlName(v));
+        Optional.ofNullable(global.getServiceName()).ifPresent(v->globalConfig.setServiceName(v));
+        Optional.ofNullable(global.getServiceImplName()).ifPresent(v->globalConfig.setServiceImplName(v));
+//        Optional.ofNullable(global.getControllerName()).ifPresent(v->globalConfig.setControllerName(v));
+
 
 
 //        DataSourceConfig dataSourceConfig = new DataSourceConfig();
@@ -129,6 +146,13 @@ public class MybatisPlusGen4Mojo extends AbstractMojo {
         Optional.ofNullable(strategy.getSuperEntityClass()).ifPresent(sec -> strategyConfig.setSuperEntityClass(sec));
         Optional.ofNullable(strategy.getVersionFieldName()).ifPresent(vfn -> strategyConfig.setVersionFieldName(vfn));
 
+        List<TableFill> fillList = new ArrayList<>();
+        fillList.add(new TableFill("fcd", FieldFill.INSERT));
+        fillList.add(new TableFill("fcu", FieldFill.INSERT));
+        fillList.add(new TableFill("lcd", FieldFill.INSERT_UPDATE));
+        fillList.add(new TableFill("lcu", FieldFill.INSERT_UPDATE));
+        strategyConfig.setTableFillList(fillList);
+
 //        InjectionConfig injectionConfig = new InjectionConfig() {
 //            @Override
 //            public void initMap() {
@@ -140,9 +164,10 @@ public class MybatisPlusGen4Mojo extends AbstractMojo {
         ConfigBuilder configBuilder = new ConfigBuilder(packageConfig,dataSourceConfig,strategyConfig,templateConfig,globalConfig);
 //        configBuilder.setInjectionConfig(injectionConfig);
 
+
+
         AutoGenerator autoGenerator = new AutoGenerator();
         autoGenerator.setConfig(configBuilder);
-
         autoGenerator.execute(); // 默认velocity引擎
 //        autoGenerator.execute(new FreemarkerTemplateEngine());  // 指定FreemarkerTemplateEngine
     }
